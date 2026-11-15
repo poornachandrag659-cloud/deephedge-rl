@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deephedge-rl"
+version = "0.1.0"
+description = "Risk-sensitive reinforcement learning for short-call option hedging"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+  "numpy>=1.26,<3",
+  "pandas>=2.1",
+  "scipy>=1.11",
+  "matplotlib>=3.8",
+  "gymnasium>=0.29,<2",
+  "stable-baselines3>=2.3,<3",
+  "torch>=2.2",
+  "streamlit>=1.32"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.4"]
+
+[project.scripts]
+deephedge-train = "deephedge.train:main"
+deephedge-evaluate = "deephedge.evaluate:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
